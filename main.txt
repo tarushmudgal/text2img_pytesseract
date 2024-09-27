@@ -1,0 +1,27 @@
+from PIL import Image
+import pytesseract
+
+
+
+def extract_text_from_image(image_path):
+    try:
+
+        img = Image.open(image_path)
+
+        text = pytesseract.image_to_string(img)
+        return text
+    except Exception as e:
+        print(f"Error processing image: {e}")
+        return None
+
+
+if __name__ == "__main__":
+    image_path = "Google_Mar23_page-0001.jpg"
+    print(f"Extracting text from {image_path}...")
+    extracted_text = extract_text_from_image(image_path)
+
+    if extracted_text:
+        print("Extracted Text:\n")
+        print(extracted_text)
+    else:
+        print("Failed to extract text.")
